@@ -124,27 +124,146 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   const modalTimerId = setTimeout(showModal, 5000);
-
+ 
   // class
-  class OfferMenu {
-    constructor(src, alt, title, desc, discount, sale, parentSelector) {
-      this.src = src,
-      this.alt = alt,
-      this.title = title,
-      this.desc = desc,
-      this.discount = discount,
-      this.sale = sale,
-      this.parent = document.querySelector(parentSelector),
-      this.formatPrice()
-    }
+  // class OfferMenu {
+  //   constructor(src, alt, title, desc, discount, sale, parentSelector) {
+  //     this.src = src,
+  //     this.alt = alt,
+  //     this.title = title,
+  //     this.desc = desc,
+  //     this.discount = discount,
+  //     this.sale = sale,
+  //     this.parent = document.querySelector(parentSelector),
+  //     this.formatPrice()
+  //   }
 
-    formatPrice() {
-      this.discount = this.discount.toLocaleString("en-US", {style:"currency", currency:"USD"});
-      this.sale = this.sale.toLocaleString("en-US", { style: "currency", currency: "USD" });
+  //   formatPrice() {
+  //     this.discount = this.discount.toLocaleString("en-US", {style:"currency", currency:"USD"});
+  //     this.sale = this.sale.toLocaleString("en-US", { style: "currency", currency: "USD" });
+  //   }
+
+  //   render() {
+  //     const element = document.createElement("div")
+  //     element.innerHTML = `
+  //       <img src="${this.src}" alt="${this.alt}" />
+  //       <div>
+  //         <h3>${this.title}</h3>
+  //         <p>${this.desc}</p>
+  //         <p><del>${this.discount}</del> <span class="primary-text">${this.sale}</span></p>
+  //       </div>
+  //     `
+  //     this.parent.append(element);
+  //   }
+  // }
+
+  // const offers = [
+  //   {
+  //     src: "./img/offer1.png",
+  //     alt: "Quattro Pasta",
+  //     title: "Quattro Pasta",
+  //     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam",
+  //     discount: 55,
+  //     sale: 25
+  //   },
+  //   {
+  //     src: "./img/offer2.png",
+  //     alt: "Vegertarian Pasta",
+  //     title: "Vegertarian Pasta",
+  //     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam",
+  //     discount: 75,
+  //     sale: 45
+  //   },
+  //   {
+  //     src: "./img/offer3.png",
+  //     alt: "Gluten-Free Pasta",
+  //     title: "Gluten-Free Pasta",
+  //     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam",
+  //     discount: 35,
+  //     sale: 15
+  //   }
+  // ]
+
+  // offers.forEach(offer => {
+  //   const {src, alt, title, desc, discount, sale} = offer;
+  //   new OfferMenu(src, alt, title, desc, discount, sale, ".offers-items").render();
+  // })
+
+  // // dayTime class extends
+  // class DayTime extends OfferMenu {
+  //   constructor(src, alt, title, time, parentSelector) {
+  //     super(src, alt, title, "", 0, 0, parentSelector)
+  //     this.time = time
+  //   }
+
+  //   formatPrice() {}
+
+  //   render() {
+  //     const el = document.createElement("div")
+  //     el.classList.add("daytime-item")
+  //     el.innerHTML = `
+  //         <img src="${this.src}" alt="${this.alt}" />
+  //         <h3>${this.title}</h3>
+  //         <p>${this.time}</p>
+  //     `
+  //     this.parent.append(el)
+  //   }
+  // }
+
+  // const dayTimeItems = [
+  //   {
+  //     src: "./img/breckfastIcon.png",
+  //     alt: "Breakfast",
+  //     title: "Breakfast",
+  //     time: "8:00 am to 10:00"
+  //   },
+  //   {
+  //     src: "./img/lunchIcon.png",
+  //     alt: "Lunch",
+  //     title: "Lunch",
+  //     time: "4:00 am to 7:00"
+  //   },
+  //   {
+  //     src: "./img/dinnerIcon.png",
+  //     alt: "Dinner",
+  //     title: "Dinner",
+  //     time: "9:00 am to 1:00"
+  //   },
+  //   {
+  //     src: "./img/dessertIcon.png",
+  //     alt: "Dessert",
+  //     title: "Dessert",
+  //     time: "All day"
+  //   },
+  // ]
+
+  // dayTimeItems.forEach(dayTimeItem => {
+  //   const {src, alt, title, time} = dayTimeItem;
+  //   new DayTime(src, alt, title, time, ".daytime-items").render();
+  // })
+
+  // Component
+  class Component {
+    constructor(parentSelector) {
+      this.parent = document.querySelector(parentSelector);
+    }
+    render() {}
+  }
+
+  // Offers
+  class OfferMenu extends Component {
+    constructor(src, alt, title, desc, discount, sale, parentSelector) {
+      super(parentSelector);
+      this.src = src;
+      this.alt = alt;
+      this.title = title;
+      this.desc = desc;
+      this.discount = discount.toLocaleString("en-US", { style: "currency", currency: "USD" });
+      this.sale = sale.toLocaleString("en-US", { style: "currency", currency: "USD" });
     }
 
     render() {
-      const element = document.createElement("div")
+      const element = document.createElement("div");
       element.innerHTML = `
         <img src="${this.src}" alt="${this.alt}" />
         <div>
@@ -152,7 +271,7 @@ window.addEventListener("DOMContentLoaded", () => {
           <p>${this.desc}</p>
           <p><del>${this.discount}</del> <span class="primary-text">${this.sale}</span></p>
         </div>
-      `
+      `;
       this.parent.append(element);
     }
   }
@@ -164,7 +283,7 @@ window.addEventListener("DOMContentLoaded", () => {
       title: "Quattro Pasta",
       desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam",
       discount: 55,
-      sale: 25
+      sale: 25,
     },
     {
       src: "./img/offer2.png",
@@ -172,7 +291,7 @@ window.addEventListener("DOMContentLoaded", () => {
       title: "Vegertarian Pasta",
       desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam",
       discount: 75,
-      sale: 45
+      sale: 45,
     },
     {
       src: "./img/offer3.png",
@@ -180,33 +299,34 @@ window.addEventListener("DOMContentLoaded", () => {
       title: "Gluten-Free Pasta",
       desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam",
       discount: 35,
-      sale: 15
-    }
-  ]
+      sale: 15,
+    },
+  ];
 
-  offers.forEach(offer => {
-    const {src, alt, title, desc, discount, sale} = offer;
+  offers.forEach((offer) => {
+    const { src, alt, title, desc, discount, sale } = offer;
     new OfferMenu(src, alt, title, desc, discount, sale, ".offers-items").render();
-  })
+  });
 
-  // dayTime class extends
-  class DayTime extends OfferMenu {
+  // daytime class
+  class DayTime extends Component {
     constructor(src, alt, title, time, parentSelector) {
-      super(src, alt, title, "", 0, 0, parentSelector)
-      this.time = time
+      super(parentSelector);
+      this.src = src;
+      this.alt = alt;
+      this.title = title;
+      this.time = time;
     }
-
-    formatPrice() {}
 
     render() {
-      const el = document.createElement("div")
-      el.classList.add("daytime-item")
+      const el = document.createElement("div");
+      el.classList.add("daytime-item");
       el.innerHTML = `
-          <img src="${this.src}" alt="${this.alt}" />
-          <h3>${this.title}</h3>
-          <p>${this.time}</p>
+        <img src="${this.src}" alt="${this.alt}" />
+        <h3>${this.title}</h3>
+        <p>${this.time}</p>
       `
-      this.parent.append(el)
+      this.parent.append(el);
     }
   }
 
