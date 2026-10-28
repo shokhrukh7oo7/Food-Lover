@@ -190,19 +190,29 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  fetch("http://localhost:3000/offer", {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  })
-    .then((res) => {
-      return res.json();
-    })
+  fetch("./data/db.json")
+    .then((res) => res.json())
     .then((data) => {
-      data.forEach((offer) => {
+      data.offer.forEach((offer) => {
         const { src, alt, title, desc, discount, sale } = offer;
         new OfferMenu(src, alt, title, desc, discount, sale, ".offers-items").render();
       });
-    });
+    })
+    .catch((error) => console.error("Ошибка загрузки:", error));
+
+  // fetch("http://localhost:3000/offer", {
+  //   method: "GET",
+  //   headers: { "Content-Type": "application/json" },
+  // })
+  //   .then((res) => {
+  //     return res.json();
+  //   })
+  //   .then((data) => {
+  //     data.forEach((offer) => {
+  //       const { src, alt, title, desc, discount, sale } = offer;
+  //       new OfferMenu(src, alt, title, desc, discount, sale, ".offers-items").render();
+  //     });
+  //   });
 
   // special menu
   class SpecialMenu extends Component {
@@ -228,19 +238,29 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  fetch("http://localhost:3000/specialMenu", {
-    method: "GET",
-    headers: { "Content-Type": "application.json" },
-  })
-    .then((res) => {
-      return res.json();
-    })
+  fetch("./data/db.json")
+    .then((res) => res.json())
     .then((data) => {
-      data.forEach((specMenu) => {
+      data.specialMenu.forEach((specMenu) => {
         const { src, alt, title, desc, price } = specMenu;
         new SpecialMenu(src, alt, title, desc, price, ".menu-items").render();
       });
-    });
+    })
+    .catch((error) => console.error("Ошибка загрузки специального меню:", error));
+
+  // fetch("http://localhost:3000/specialMenu", {
+  //   method: "GET",
+  //   headers: { "Content-Type": "application.json" },
+  // })
+  //   .then((res) => {
+  //     return res.json();
+  //   })
+  //   .then((data) => {
+  //     data.forEach((specMenu) => {
+  //       const { src, alt, title, desc, price } = specMenu;
+  //       new SpecialMenu(src, alt, title, desc, price, ".menu-items").render();
+  //     });
+  //   });
 
   // daytime class
   class DayTime extends Component {
@@ -264,19 +284,28 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  fetch("http://localhost:3000/dayTimeItems", {
-    method: "GET",
-    headers: { "Content-Type": "application.json" },
-  })
-    .then((res) => {
-      return res.json();
-    })
+  fetch("./data/db.json")
+    .then((res) => res.json())
     .then((data) => {
-      data.forEach((dayTimeItem) => {
+      data.dayTimeItems.forEach((dayTimeItem) => {
         const { src, alt, title, time } = dayTimeItem;
         new DayTime(src, alt, title, time, ".daytime-items").render();
       });
     });
+
+  // fetch("http://localhost:3000/dayTimeItems", {
+  //   method: "GET",
+  //   headers: { "Content-Type": "application.json" },
+  // })
+  //   .then((res) => {
+  //     return res.json();
+  //   })
+  //   .then((data) => {
+  //     data.forEach((dayTimeItem) => {
+  //       const { src, alt, title, time } = dayTimeItem;
+  //       new DayTime(src, alt, title, time, ".daytime-items").render();
+  //     });
+  //   });
 
   // form contact with telegram bot
   const form = document.querySelector("form");

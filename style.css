@@ -193,6 +193,27 @@ header * {
 
 #about img {
   max-width: 450px;
+  height: auto;
+  border-radius: 8px;
+  aspect-ratio: 1.5/1;
+  object-fit: cover;
+  box-shadow: 20px 20px 10px 0px rgba(0, 0, 0, 0.5);
+  transition: all 1.3s ease-in-out;
+}
+
+#about img:hover {
+  opacity: 1;
+  -webkit-animation: flash 1.5s;
+  animation: flash 2s;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 #about .tab_content a {
@@ -326,11 +347,12 @@ header * {
 }
 
 #daytime .daytime-items h3 {
-  font-size: 32px;
+  font-size: clamp(18px, 2vw, 32px);
   margin: 20px 0 10px;
 }
 
 #daytime .daytime-items p {
+  font-size: clamp(14px, 1vw, 16px);
   font-weight: 500;
 }
 /* Daytime section End */
@@ -612,6 +634,13 @@ form button {
     padding: 0 20px;
     text-align: center;
   }
+  #daytime .daytime-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 30px 0;
+    height: auto;
+  }
 }
 
 @media (max-width: 576px) {
@@ -623,6 +652,9 @@ form button {
   }
   .btn__group {
     flex-direction: column;
+  }
+  #daytime .daytime-items {
+    grid-template-columns: 1fr;
   }
 }
 
