@@ -295,7 +295,7 @@ window.addEventListener("DOMContentLoaded", () => {
           confirmButtonText: "Закрыть",
           showConfirmButton: false,
         });
-        console.error(err);
+        console.erro(err);
       });
   });
 });
