@@ -243,9 +243,11 @@ header * {
 }
 
 #menu .menu-items {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 #menu .menu-items .menu-item {
@@ -743,8 +745,9 @@ form button {
 
 .btn__group {
   display: flex;
-  justify-content: cpace-between;
+  justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
 
 .button {
@@ -764,6 +767,7 @@ form button {
   opacity: 0.95;
   padding-right: 3.5em;
   cursor: pointer;
+  border-radius: 5px;
 }
 .button:before,
 .button:after {
@@ -781,6 +785,9 @@ form button {
 
 /* Arrow Button Markup  */
 .arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #383848;
 }
 .arrow:hover {
@@ -793,6 +800,8 @@ form button {
 /* Entity Icon   */
 .arrow:after {
   content: "\2794";
+  /* position: absolute; */
+  top: -8%;
 }
 /* Set Arrow Icon Bounce Animation   */
 .arrow:hover:after {
@@ -814,6 +823,7 @@ form button {
 /* Entity Icon   */
 .phone:after {
   content: "\260E";
+  top: -8%;
 }
 /* Set Phone Icon Wiggle Animation   */
 .phone:hover:after {

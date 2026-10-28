@@ -1,3 +1,5 @@
+"use strict";
+
 window.addEventListener("DOMContentLoaded", () => {
   // TABS
   const tabs = document.querySelectorAll(".tabheader__item");
@@ -160,37 +162,57 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  const offers = [
-    {
-      src: "./img/offer1.png",
-      alt: "Quattro Pasta",
-      title: "Quattro Pasta",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam",
-      discount: 55,
-      sale: 25,
-    },
-    {
-      src: "./img/offer2.png",
-      alt: "Vegertarian Pasta",
-      title: "Vegertarian Pasta",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam",
-      discount: 75,
-      sale: 45,
-    },
-    {
-      src: "./img/offer3.png",
-      alt: "Gluten-Free Pasta",
-      title: "Gluten-Free Pasta",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam",
-      discount: 35,
-      sale: 15,
-    },
-  ];
+  fetch("http://localhost:3000/offer", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      data.forEach((offer) => {
+        const { src, alt, title, desc, discount, sale } = offer;
+        new OfferMenu(src, alt, title, desc, discount, sale, ".offers-items").render();
+      });
+    });
 
-  offers.forEach((offer) => {
-    const { src, alt, title, desc, discount, sale } = offer;
-    new OfferMenu(src, alt, title, desc, discount, sale, ".offers-items").render();
-  });
+  // special menu
+  class SpecialMenu extends Component {
+    constructor(src, alt, title, desc, price, parentSelector) {
+      super(parentSelector);
+      this.src = src;
+      this.alt = alt;
+      this.title = title;
+      this.desc = desc;
+      this.price = price.toLocaleString("en-US", { style: "currency", currency: "USD" });
+    }
+    render() {
+      const menuEl = document.createElement("div");
+      menuEl.classList.add("menu-item");
+      menuEl.innerHTML = `
+        <img src="${this.src}" alt="${this.alt}" />
+        <div>
+          <h3>${this.title} <span class="primary-text">${this.price}</span></h3>
+          <p>${this.desc}</p>
+        </div>
+      `;
+      this.parent.append(menuEl);
+    }
+  }
+
+  fetch("http://localhost:3000/specialMenu", {
+    method: "GET",
+    headers: { "Content-Type": "application.json" },
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      data.forEach((specMenu) => {
+        const { src, alt, title, desc, price } = specMenu;
+        new SpecialMenu(src, alt, title, desc, price, ".menu-items").render();
+      });
+    });
 
   // daytime class
   class DayTime extends Component {
@@ -214,43 +236,22 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  const dayTimeItems = [
-    {
-      src: "./img/breckfastIcon.png",
-      alt: "Breakfast",
-      title: "Breakfast",
-      time: "8:00 am to 10:00",
-    },
-    {
-      src: "./img/lunchIcon.png",
-      alt: "Lunch",
-      title: "Lunch",
-      time: "4:00 am to 7:00",
-    },
-    {
-      src: "./img/dinnerIcon.png",
-      alt: "Dinner",
-      title: "Dinner",
-      time: "9:00 am to 1:00",
-    },
-    {
-      src: "./img/dessertIcon.png",
-      alt: "Dessert",
-      title: "Dessert",
-      time: "All day",
-    },
-  ];
-
-  dayTimeItems.forEach((dayTimeItem) => {
-    const { src, alt, title, time } = dayTimeItem;
-    new DayTime(src, alt, title, time, ".daytime-items").render();
-  });
+  fetch("http://localhost:3000/dayTimeItems", {
+    method: "GET",
+    headers: { "Content-Type": "application.json" },
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      data.forEach((dayTimeItem) => {
+        const { src, alt, title, time } = dayTimeItem;
+        new DayTime(src, alt, title, time, ".daytime-items").render();
+      });
+    });
 
   // form contact with telegram bot
   const form = document.querySelector("form");
-  // const telegramToken = "9001966850:AAE63hN66GCzD1hUdaNMuKd-2tS_lx1hnCA";
-  // const chatId = "1235847045";
-
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 

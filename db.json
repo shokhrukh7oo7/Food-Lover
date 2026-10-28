@@ -1,0 +1,140 @@
+{
+    "offer": [
+        {
+            "src": "./img/offer1.png",
+            "alt": "Quattro Pasta",
+            "title": "Quattro Pasta",
+            "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam",
+            "discount": 55,
+            "sale": 25
+        },
+        {
+            "src": "./img/offer2.png",
+            "alt": "Vegertarian Pasta",
+            "title": "Vegertarian Pasta",
+            "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam",
+            "discount": 75,
+            "sale": 45
+        },
+        {
+            "src": "./img/offer3.png",
+            "alt": "Gluten-Free Pasta",
+            "title": "Gluten-Free Pasta",
+            "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam",
+            "discount": 35,
+            "sale": 15
+        }
+    ],
+    "dayTimeItems": [
+        {
+            "src": "./img/breckfastIcon.png",
+            "alt": "Breakfast",
+            "title": "Breakfast",
+            "time": "8:00 am to 10:00"
+        },
+        {
+            "src": "./img/lunchIcon.png",
+            "alt": "Lunch",
+            "title": "Lunch",
+            "time": "4:00 am to 7:00"
+        },
+        {
+            "src": "./img/dinnerIcon.png",
+            "alt": "Dinner",
+            "title": "Dinner",
+            "time": "9:00 am to 1:00"
+        },
+        {
+            "src": "./img/dessertIcon.png",
+            "alt": "Dessert",
+            "title": "Dessert",
+            "time": "All day"
+        }
+    ],
+    "specialMenu": [
+        {
+            "src": "./img/food1.png",
+            "alt": "Lasal cheese",
+            "title": "LASAL CHEESE",
+            "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+            "price": 18
+        },
+        {
+            "src": "./img/food2.png",
+            "alt": "JUMBO CRAB SHRIMP",
+            "title": "JUMBO CRAB SHRIMP",
+            "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+            "price": 24
+        },
+        {
+            "src": "./img/food3.png",
+            "alt": "KOKTAIL JUCIE",
+            "title": "KOKTAIL JUCIE",
+            "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+            "price": 12
+        },
+        {
+            "src": "./img/food4.png",
+            "alt": "CAPO STEAK",
+            "title": "CAPO STEAK",
+            "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+            "price": 60
+        },
+        {
+            "src": "./img/food5.png",
+            "alt": "ORGANIC FRUIT SALAD",
+            "title": "ORGANIC FRUIT SALAD",
+            "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+            "price": 8
+        },
+        {
+            "src": "./img/food6.png",
+            "alt": "CHEESE PIZZA",
+            "title": "CHEESE PIZZA",
+            "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+            "price": 18
+        },
+        {
+            "src": "./img/food7.jpeg",
+            "alt": "KOFTA MEAT",
+            "title": "KOFTA MEAT",
+            "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+            "price": 40
+        },
+        {
+            "src": "./img/food8.jpeg",
+            "alt": "SPANISH PIES ",
+            "title": "SPANISH PIES ",
+            "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+            "price": 14
+        },
+        {
+            "src": "./img/food9.jpeg",
+            "alt": "CHEESE TOST ",
+            "title": "CHEESE TOST ",
+            "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+            "price": 6
+        },
+        {
+            "src": "./img/food10.jpeg",
+            "alt": "FRUIT SALAD ",
+            "title": "FRUIT SALAD ",
+            "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+            "price": 14
+        },
+        {
+            "src": "./img/food11.jpeg",
+            "alt": "CHICKEN SHAWARMA ",
+            "title": "CHICKEN SHAWARMA ",
+            "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+            "price": 20
+        },
+        {
+            "src": "./img/food12.jpeg",
+            "alt": "MEGA CHEESE PIZZA ",
+            "title": "MEGA CHEESE PIZZA ",
+            "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+            "price": 30
+        }
+    ]
+}
