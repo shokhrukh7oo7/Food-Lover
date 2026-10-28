@@ -330,7 +330,7 @@ window.addEventListener("DOMContentLoaded", () => {
     })
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Network error during sending");
+          throw new Error("Ошибка сети при отправке");
         }
         return res.json();
       })
