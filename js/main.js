@@ -370,6 +370,8 @@ window.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
+    loaderWrapper.style.display = "flex";
+
     const formData = new FormData(form);
     const object = {};
     formData.forEach((value, key) => {
@@ -383,6 +385,33 @@ window.addEventListener("DOMContentLoaded", () => {
         chat_id: chatId,
         text: `Name: ${object.name}. Phone: ${object.phone}`,
       }),
-    });
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network error during sending");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        Swal.fire({
+          icon: "success",
+          title: "Успешно!",
+          text: "Ваше сообщение отправлено в телеграм!",
+          confirmButtonText: "Ок",
+          position: "top-end",
+        });
+        loaderWrapper.style.display = "none";
+        form.reset();
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Ошибка!",
+          text: "Что-то пошло не так. Попробуйте еще раз.",
+          confirmButtonText: "Закрыть",
+          showConfirmButton: false,
+        });
+        console.error(error);
+      });
   });
 });
