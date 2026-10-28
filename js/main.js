@@ -1,6 +1,34 @@
 "use strict";
 
 window.addEventListener("DOMContentLoaded", () => {
+  // BURGER MENU
+  const openMenuBtn = document.getElementById("openMenu");
+  const closeMenuBtn = document.getElementById("closeMenu");
+  const navMenu = document.getElementById("navMenu");
+  const headerWrapper = document.querySelector("header");
+
+  openMenuBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    navMenu.classList.add("active");
+  });
+
+  closeMenuBtn.addEventListener("click", () => {
+    navMenu.classList.remove("active");
+  });
+
+  const navLinks = document.querySelectorAll("ul li a");
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("active");
+    });
+  });
+  document.addEventListener("click", (e) => {
+    if (navMenu.classList.contains("active") && !navMenu.contains(e.target) && !openMenuBtn.contains(e.target)) {
+      navMenu.classList.remove("active");
+    }
+  });
+
   // TABS
   const tabs = document.querySelectorAll(".tabheader__item");
   const tabContent = document.querySelectorAll(".tab_content");

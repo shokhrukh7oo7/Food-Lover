@@ -27,10 +27,20 @@
       <span class="loader"></span>
     </div>
     <!-- Header Start -->
-    <header>
+    <header class="site-header">
       <div id="navbar">
-        <img src="./img/logo.png" alt="Food Lover Logo" />
-        <nav role="navigation">
+        <a href="./index.html" class="logo-link">
+          <img src="./img/logo.png" alt="Food Lover Logo" />
+        </a>
+
+        <button class="openMenu" id="openMenu">
+          <img src="./img/openMenu.svg" alt="open menu" />
+        </button>
+
+        <nav role="navigation" id="navMenu">
+          <button class="closeMenu" id="closeMenu">
+            <img src="./img/closeMenu.svg" alt="close menu" />
+          </button>
           <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>

@@ -79,6 +79,7 @@ header {
 nav ul {
   display: flex;
   margin-right: 100px;
+  list-style: none;
 }
 
 nav ul li a {
@@ -122,6 +123,26 @@ header * {
   z-index: 10;
 }
 
+.openMenu,
+.closeMenu {
+  background-color: transparent;
+  border: none;
+  display: none;
+  cursor: pointer;
+}
+.openMenu img {
+  width: 30px !important;
+  height: 30px !important;
+  margin: 0 !important;
+}
+.closeMenu img {
+  width: 25px !important;
+  height: 25px !important;
+  margin: 0 !important;
+}
+.closeMenu {
+  display: none;
+}
 /* Header End */
 
 /* About Start */
@@ -137,13 +158,13 @@ header * {
 #offers .title,
 #menu .title {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: clamp(30px, 4vw, 64px);
 }
 
 #about h2,
 #offers h2,
 #menu h2 {
-  font-size: 40px;
+  font-size: clamp(28px, 2.5vw, 40px);
   margin-bottom: 20px;
 }
 
@@ -231,7 +252,7 @@ header * {
 /* Menu Section Start */
 #menu {
   background: #f4f2ed;
-  padding: 5rem 0;
+  padding: 5rem 10px;
 }
 
 #menu .title h2 {
@@ -268,6 +289,7 @@ header * {
   border-bottom: 1px dashed #c2bdbd;
   padding-bottom: 10px;
   position: relative;
+  font-size: clamp(15px, 1.2vw, 18px);
 }
 
 #menu .menu-items .menu-item span {
@@ -278,6 +300,7 @@ header * {
 
 #menu .menu-items .menu-item p {
   margin-top: 10px;
+  font-size: clamp(13px, 1vw, 16px);
 }
 
 #menu .btn {
@@ -360,18 +383,19 @@ header * {
 }
 
 #contact .contact-info div {
-  margin: 30px 0;
+  margin: clamp(16px, 2vw, 30px) 0;
   line-height: 1.7;
 }
 
 #contact .contact-info h3 {
-  font-size: 28px;
+  font-size: clamp(22px, 2vw, 28px);
   color: #383848;
   margin-bottom: 10px;
 }
 
 #contact .contact-info p {
   color: #9a9a9a;
+  font-size: clamp(14px, 1.2vw, 18px);
 }
 
 #contact .contact-info p i {
@@ -472,18 +496,22 @@ form button {
 
   #contact .contact-content {
     flex-direction: column;
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+
+  #contact .contact-content .contact-info {
+    display: flex;
+    justify-content: center;
+    gap: clamp(30px, 4vw, 50px);
+  }
+
+  .promotion__timer .title {
+    text-align: center;
   }
 
   /* Mobile Devices */
   @media (max-width: 600px) {
-    #navbar {
-      flex-direction: column;
-    }
-
-    #navbar img {
-      margin-bottom: 20px;
-    }
-
     header .content h1 {
       font-size: 18px;
     }
@@ -515,6 +543,8 @@ form button {
 
     #menu .menu-items .menu-item {
       margin: 20px 10px;
+      flex-direction: column;
+      gap: 5px;
     }
 
     #daytime .daytime-items {
@@ -527,16 +557,79 @@ form button {
       margin-top: 20px;
     }
 
-    #contact .contact-info,
-    form {
+    #contact form {
       width: 80%;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .openMenu {
+    display: block;
+    margin-right: 20px;
+  }
+  #navbar nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background-color: #222;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 70px;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+  }
+  #navbar nav.active {
+    right: 0;
+  }
+
+  #navbar nav.active .closeMenu {
+    display: block;
+    position: absolute;
+    top: 38px;
+    right: 20px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    margin-right: 0;
+    width: 100%;
+    padding: 0;
+  }
+
+  nav ul li {
+    width: 100%;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 15px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  header .content {
+    padding: 0 20px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  #contact .contact-content .contact-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+  }
+  .btn__group {
+    flex-direction: column;
   }
 }
 
 .tabheader__items {
   justify-content: center;
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   background-color: #9a9a9a;
   width: fit-content;
@@ -641,19 +734,19 @@ form button {
   width: 100%;
   background: #938791;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-  font-size: 16px;
+  font-size: clamp(13px, 1vw, 16px);
   font-weight: 300;
   text-align: center;
   border: 1px solid #e4b95b;
-  padding: 20px;
+  padding: clamp(5px, 1vw, 20px);
 }
 .promotion__timer .timer__block span {
   display: block;
-  font-size: 56px;
+  font-size: clamp(28px, 4vw, 56px);
   font-weight: 700;
 }
 .promotion__timer .title {
-  font-size: 40px;
+  font-size: clamp(28px, 2.5vw, 40px);
   color: #383848;
   margin-bottom: 10px;
 }
@@ -681,12 +774,14 @@ form button {
   background-color: rgba(0, 0, 0, 0.5);
 }
 .modal__dialog {
+  width: 100%;
   max-width: 500px;
   margin: 40px auto;
 }
 .modal__content {
   position: relative;
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
@@ -710,7 +805,7 @@ form button {
 }
 .modal__title {
   text-align: center;
-  font-size: 30px;
+  font-size: clamp(18px, 1.5vw, 30px);
   text-transform: uppercase;
   font-weight: bold;
 }
