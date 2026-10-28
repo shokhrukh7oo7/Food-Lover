@@ -124,7 +124,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   const modalTimerId = setTimeout(showModal, 5000);
- 
+
   // class
   // class OfferMenu {
   //   constructor(src, alt, title, desc, discount, sale, parentSelector) {
@@ -325,7 +325,7 @@ window.addEventListener("DOMContentLoaded", () => {
         <img src="${this.src}" alt="${this.alt}" />
         <h3>${this.title}</h3>
         <p>${this.time}</p>
-      `
+      `;
       this.parent.append(el);
     }
   }
@@ -335,30 +335,54 @@ window.addEventListener("DOMContentLoaded", () => {
       src: "./img/breckfastIcon.png",
       alt: "Breakfast",
       title: "Breakfast",
-      time: "8:00 am to 10:00"
+      time: "8:00 am to 10:00",
     },
     {
       src: "./img/lunchIcon.png",
       alt: "Lunch",
       title: "Lunch",
-      time: "4:00 am to 7:00"
+      time: "4:00 am to 7:00",
     },
     {
       src: "./img/dinnerIcon.png",
       alt: "Dinner",
       title: "Dinner",
-      time: "9:00 am to 1:00"
+      time: "9:00 am to 1:00",
     },
     {
       src: "./img/dessertIcon.png",
       alt: "Dessert",
       title: "Dessert",
-      time: "All day"
+      time: "All day",
     },
-  ]
+  ];
 
-  dayTimeItems.forEach(dayTimeItem => {
-    const {src, alt, title, time} = dayTimeItem;
+  dayTimeItems.forEach((dayTimeItem) => {
+    const { src, alt, title, time } = dayTimeItem;
     new DayTime(src, alt, title, time, ".daytime-items").render();
-  })
+  });
+
+  // form contact with telegram bot
+  const form = document.querySelector("form");
+  const telegramToken = "9001966850:AAE63hN66GCzD1hUdaNMuKd-2tS_lx1hnCA";
+  const chatId = "1235847045";
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const object = {};
+    formData.forEach((value, key) => {
+      object[key] = value;
+    });
+
+    fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: `Name: ${object.name}. Phone: ${object.phone}`,
+      }),
+    });
+  });
 });
