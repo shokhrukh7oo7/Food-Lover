@@ -1,7 +1,9 @@
-function formWrapper(formSelector) {
+function formWrapper(formSelector, closeModalCallback) {
   // form contact with telegram bot
-
   const form = document.querySelector(formSelector);
+  if (!form) return;
+
+  
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -37,6 +39,10 @@ function formWrapper(formSelector) {
         });
         // loaderWrapper.style.display = "none";
         form.reset();
+
+        if (typeof closeModalCallback === "function") {
+          closeModalCallback();
+        }
       })
       .catch((err) => {
         Swal.fire({
@@ -46,7 +52,7 @@ function formWrapper(formSelector) {
           confirmButtonText: "Закрыть",
           showConfirmButton: false,
         });
-        console.erro(err);
+        console.error(err);
       });
   });
 }

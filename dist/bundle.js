@@ -225,10 +225,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function formWrapper(formSelector) {
+function formWrapper(formSelector, closeModalCallback) {
   // form contact with telegram bot
-
   const form = document.querySelector(formSelector);
+  if (!form) return;
+
+  
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -264,6 +266,10 @@ function formWrapper(formSelector) {
         });
         // loaderWrapper.style.display = "none";
         form.reset();
+
+        if (typeof closeModalCallback === "function") {
+          closeModalCallback();
+        }
       })
       .catch((err) => {
         Swal.fire({
@@ -273,7 +279,7 @@ function formWrapper(formSelector) {
           confirmButtonText: "Закрыть",
           showConfirmButton: false,
         });
-        console.erro(err);
+        console.error(err);
       });
   });
 }
@@ -314,9 +320,12 @@ function loader(loaderSelector) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   closeModalFunc: () => (/* binding */ closeModalFunc),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // modal
+let closeModalFunc = null; // Внутренная переменная для хроанение ссылки
+
 function modal() {
   // Modal
   const openModalBtn = document.querySelectorAll("[data-modal]");
@@ -338,6 +347,9 @@ function modal() {
     document.body.style.overflow = "";
   }
 
+  // Сохраняем ссылку на функцию чтобы экспортировать отдельно
+  closeModalFunc = closeModal;
+
   openModalBtn.forEach((btn) => {
     btn.addEventListener("click", showModal);
   });
@@ -358,6 +370,7 @@ function modal() {
 
   const modalTimerId = setTimeout(showModal, 5000);
 }
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modal);
 
@@ -580,7 +593,7 @@ window.addEventListener("DOMContentLoaded", () => {
   (0,_modules_timer_js__WEBPACK_IMPORTED_MODULE_3__["default"])("2027-01-07", ".timer");
   (0,_modules_modal_js__WEBPACK_IMPORTED_MODULE_4__["default"])();
   (0,_modules_class_js__WEBPACK_IMPORTED_MODULE_5__["default"])();
-  (0,_modules_form_js__WEBPACK_IMPORTED_MODULE_6__["default"])("form");
+  (0,_modules_form_js__WEBPACK_IMPORTED_MODULE_6__["default"])("form", _modules_modal_js__WEBPACK_IMPORTED_MODULE_4__.closeModalFunc);
   (0,_modules_slider_js__WEBPACK_IMPORTED_MODULE_7__["default"])();
 });
 

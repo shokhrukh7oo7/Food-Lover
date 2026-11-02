@@ -1,4 +1,6 @@
 // modal
+let closeModalFunc = null; // Внутренная переменная для хроанение ссылки
+
 function modal() {
   // Modal
   const openModalBtn = document.querySelectorAll("[data-modal]");
@@ -19,6 +21,9 @@ function modal() {
     modal.classList.remove("show");
     document.body.style.overflow = "";
   }
+
+  // Сохраняем ссылку на функцию чтобы экспортировать отдельно
+  closeModalFunc = closeModal;
 
   openModalBtn.forEach((btn) => {
     btn.addEventListener("click", showModal);
@@ -41,4 +46,5 @@ function modal() {
   const modalTimerId = setTimeout(showModal, 5000);
 }
 
+export { closeModalFunc };
 export default modal;

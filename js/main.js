@@ -4,7 +4,7 @@ import tabs from "./modules/tabs.js";
 import loader from "./modules/loader.js";
 import burgerMenu from "./modules/burgerMenu.js";
 import timer from "./modules/timer.js";
-import modal from "./modules/modal.js";
+import modal, {closeModalFunc} from "./modules/modal.js";
 import classCard from "./modules/class.js";
 import formWrapper from "./modules/form.js";
 import slider from "./modules/slider.js";
@@ -16,6 +16,6 @@ window.addEventListener("DOMContentLoaded", () => {
   timer("2027-01-07", ".timer");
   modal();
   classCard();
-  formWrapper("form");
+  formWrapper("form", closeModalFunc);
   slider();
 });
