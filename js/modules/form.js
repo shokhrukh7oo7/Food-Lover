@@ -3,7 +3,6 @@ function formWrapper(formSelector, closeModalCallback) {
   const form = document.querySelector(formSelector);
   if (!form) return;
 
-  
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
