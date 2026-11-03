@@ -154,8 +154,8 @@ function classCard() {
     }
   }
 
-  fetch("./data/db.json")
-    .then((res) => res.json())
+  // with async/await
+  ;(0,_service_get_resources__WEBPACK_IMPORTED_MODULE_0__["default"])()
     .then((data) => {
       data.specialMenu.forEach((specMenu) => {
         const { src, alt, title, desc, price } = specMenu;
@@ -163,6 +163,16 @@ function classCard() {
       });
     })
     .catch((error) => console.error("Ошибка загрузки специального меню:", error));
+
+  // fetch("./data/db.json")
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     data.specialMenu.forEach((specMenu) => {
+  //       const { src, alt, title, desc, price } = specMenu;
+  //       new SpecialMenu(src, alt, title, desc, price, ".menu-items").render();
+  //     });
+  //   })
+  //   .catch((error) => console.error("Ошибка загрузки специального меню:", error));
 
   // fetch("http://localhost:3000/specialMenu", {
   //   method: "GET",
@@ -200,14 +210,22 @@ function classCard() {
     }
   }
 
-  fetch("./data/db.json")
-    .then((res) => res.json())
-    .then((data) => {
-      data.dayTimeItems.forEach((dayTimeItem) => {
-        const { src, alt, title, time } = dayTimeItem;
-        new DayTime(src, alt, title, time, ".daytime-items").render();
-      });
+  // with async/await
+  ;(0,_service_get_resources__WEBPACK_IMPORTED_MODULE_0__["default"])().then((data) => {
+    data.dayTimeItems.forEach((dayTimeItem) => {
+      const { src, alt, title, time } = dayTimeItem;
+      new DayTime(src, alt, title, time, ".daytime-items").render();
     });
+  });
+
+  // fetch("./data/db.json")
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     data.dayTimeItems.forEach((dayTimeItem) => {
+  //       const { src, alt, title, time } = dayTimeItem;
+  //       new DayTime(src, alt, title, time, ".daytime-items").render();
+  //     });
+  //   });
 
   // fetch("http://localhost:3000/dayTimeItems", {
   //   method: "GET",
@@ -239,12 +257,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _service_postData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../service/postData */ "./js/service/postData.js");
+
+
 function formWrapper(formSelector, closeModalCallback) {
   // form contact with telegram bot
   const form = document.querySelector(formSelector);
   if (!form) return;
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     // loaderWrapper.style.display = "flex";
@@ -255,45 +276,73 @@ function formWrapper(formSelector, closeModalCallback) {
       object[key] = value;
     });
 
-    fetch(`https://api.telegram.org/bot${CONFIG.TELEGRAM_TOKEN}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: CONFIG.CHAT_ID,
-        text: `Name: ${object.name}. Phone: ${object.phone}`,
-      }),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Ошибка сети при отправке");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        Swal.fire({
-          icon: "success",
-          title: "Успешно!",
-          text: "Ваше сообщение отправлено в телеграм!",
-          confirmButtonText: "Ок",
-          position: "top-end",
-        });
-        // loaderWrapper.style.display = "none";
-        form.reset();
+    const telegramURL = `https://api.telegram.org/bot${CONFIG.TELEGRAM_TOKEN}/sendMessage`;
+    const requestBody = JSON.stringify({
+      chat_id: CONFIG.CHAT_ID,
+      text: `Name: ${object.name}. Phone: ${object.phone}`,
+    });
 
-        if (typeof closeModalCallback === "function") {
-          closeModalCallback();
-        }
-      })
-      .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Ошибка!",
-          text: "Что-то пошло не так. Попробуйте еще раз.",
-          confirmButtonText: "Закрыть",
-          showConfirmButton: false,
-        });
-        console.error(err);
+    try {
+      await (0,_service_postData__WEBPACK_IMPORTED_MODULE_0__["default"])(telegramURL, requestBody);
+
+      Swal.fire({
+        icon: "success",
+        title: "Успешно!",
+        text: "Ваше сообщение отправлено в телеграм!",
+        confirmButtonText: "Ок",
+        position: "top-end",
       });
+
+      form.reset();
+
+      if (typeof closeModalCallback === "function") {
+        closeModalCallback();
+      }
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: "Ошибка",
+        text: "Что-то пошло не так. Попробуйте еще раз",
+        showConfirmButton: false,
+      });
+    }
+
+    // fetch(`https://api.telegram.org/bot${CONFIG.TELEGRAM_TOKEN}/sendMessage`, {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     chat_id: CONFIG.CHAT_ID,
+    //     text: `Name: ${object.name}. Phone: ${object.phone}`,
+    //   }),
+    // }).then((res) => {
+    //     if (!res.ok) {
+    //       throw new Error("Ошибка сети при отправке");
+    //     }
+    //     return res.json();
+    //   }).then((data) => {
+    //     Swal.fire({
+    //       icon: "success",
+    //       title: "Успешно!",
+    //       text: "Ваше сообщение отправлено в телеграм!",
+    //       confirmButtonText: "Ок",
+    //       position: "top-end",
+    //     });
+    //     // loaderWrapper.style.display = "none";
+    //     form.reset();
+
+    //     if (typeof closeModalCallback === "function") {
+    //       closeModalCallback();
+    //     }
+    //   }).catch((err) => {
+    //     Swal.fire({
+    //       icon: "error",
+    //       title: "Ошибка!",
+    //       text: "Что-то пошло не так. Попробуйте еще раз.",
+    //       confirmButtonText: "Закрыть",
+    //       showConfirmButton: false,
+    //     });
+    //     console.error(err);
+    //   });
   });
 }
 
@@ -550,6 +599,37 @@ async function getResources() {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getResources);
+
+/***/ },
+
+/***/ "./js/service/postData.js"
+/*!********************************!*\
+  !*** ./js/service/postData.js ***!
+  \********************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// form data
+
+const postData = async (url, data) => {
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: data,
+  });
+
+  if (!res.ok) {
+    throw new Error(`Ошибка сети: ${res.status}`);
+  }
+
+  return await res.json();
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (postData);
+
 
 /***/ }
 

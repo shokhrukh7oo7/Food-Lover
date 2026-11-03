@@ -95,8 +95,8 @@ function classCard() {
     }
   }
 
-  fetch("./data/db.json")
-    .then((res) => res.json())
+  // with async/await
+  getResources()
     .then((data) => {
       data.specialMenu.forEach((specMenu) => {
         const { src, alt, title, desc, price } = specMenu;
@@ -104,6 +104,16 @@ function classCard() {
       });
     })
     .catch((error) => console.error("Ошибка загрузки специального меню:", error));
+
+  // fetch("./data/db.json")
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     data.specialMenu.forEach((specMenu) => {
+  //       const { src, alt, title, desc, price } = specMenu;
+  //       new SpecialMenu(src, alt, title, desc, price, ".menu-items").render();
+  //     });
+  //   })
+  //   .catch((error) => console.error("Ошибка загрузки специального меню:", error));
 
   // fetch("http://localhost:3000/specialMenu", {
   //   method: "GET",
@@ -141,14 +151,22 @@ function classCard() {
     }
   }
 
-  fetch("./data/db.json")
-    .then((res) => res.json())
-    .then((data) => {
-      data.dayTimeItems.forEach((dayTimeItem) => {
-        const { src, alt, title, time } = dayTimeItem;
-        new DayTime(src, alt, title, time, ".daytime-items").render();
-      });
+  // with async/await
+  getResources().then((data) => {
+    data.dayTimeItems.forEach((dayTimeItem) => {
+      const { src, alt, title, time } = dayTimeItem;
+      new DayTime(src, alt, title, time, ".daytime-items").render();
     });
+  });
+
+  // fetch("./data/db.json")
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     data.dayTimeItems.forEach((dayTimeItem) => {
+  //       const { src, alt, title, time } = dayTimeItem;
+  //       new DayTime(src, alt, title, time, ".daytime-items").render();
+  //     });
+  //   });
 
   // fetch("http://localhost:3000/dayTimeItems", {
   //   method: "GET",
