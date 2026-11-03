@@ -1,3 +1,5 @@
+import getResources from "../service/get-resources";
+
 // class
 function classCard() {
   // Component
@@ -34,8 +36,8 @@ function classCard() {
     }
   }
 
-  fetch("./data/db.json")
-    .then((res) => res.json())
+  // with async/await
+  getResources()
     .then((data) => {
       data.offer.forEach((offer) => {
         const { src, alt, title, desc, discount, sale } = offer;
@@ -43,6 +45,17 @@ function classCard() {
       });
     })
     .catch((error) => console.error("Ошибка загрузки:", error));
+
+  // with json file (like dataBase)
+  // fetch("./data/db.json")
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     data.offer.forEach((offer) => {
+  //       const { src, alt, title, desc, discount, sale } = offer;
+  //       new OfferMenu(src, alt, title, desc, discount, sale, ".offers-items").render();
+  //     });
+  //   })
+  //   .catch((error) => console.error("Ошибка загрузки:", error));
 
   // fetch("http://localhost:3000/offer", {
   //   method: "GET",

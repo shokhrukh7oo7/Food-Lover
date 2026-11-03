@@ -56,6 +56,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _service_get_resources__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../service/get-resources */ "./js/service/get-resources.js");
+
+
 // class
 function classCard() {
   // Component
@@ -92,8 +95,8 @@ function classCard() {
     }
   }
 
-  fetch("./data/db.json")
-    .then((res) => res.json())
+  // with async/await
+  ;(0,_service_get_resources__WEBPACK_IMPORTED_MODULE_0__["default"])()
     .then((data) => {
       data.offer.forEach((offer) => {
         const { src, alt, title, desc, discount, sale } = offer;
@@ -101,6 +104,17 @@ function classCard() {
       });
     })
     .catch((error) => console.error("Ошибка загрузки:", error));
+
+  // with json file (like dataBase)
+  // fetch("./data/db.json")
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     data.offer.forEach((offer) => {
+  //       const { src, alt, title, desc, discount, sale } = offer;
+  //       new OfferMenu(src, alt, title, desc, discount, sale, ".offers-items").render();
+  //     });
+  //   })
+  //   .catch((error) => console.error("Ошибка загрузки:", error));
 
   // fetch("http://localhost:3000/offer", {
   //   method: "GET",
@@ -502,6 +516,40 @@ function timer(deadline, selector) {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (timer);
 
+
+/***/ },
+
+/***/ "./js/service/get-resources.js"
+/*!*************************************!*\
+  !*** ./js/service/get-resources.js ***!
+  \*************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// with async/await
+// async function getResources() {
+//   const response = await fetch("./data/db.json");
+//   const data = await response.json();
+//   return data;
+// }
+
+// export default getResources;
+// =====================================
+// with try/catch
+async function getResources() {
+  try {
+    const response = await fetch("./data/db.json");
+    const data = response.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getResources);
 
 /***/ }
 
