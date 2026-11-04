@@ -360,7 +360,7 @@ header * {
 /* Gallery section start */
 #gallery {
   background: url("./img/offer-background.jpg") center center/cover;
-  padding: 8rem 0 6rem;
+  padding: 6rem 0 6rem;
 }
 #gallery h2 {
   font-size: 40px;
@@ -716,13 +716,14 @@ form button {
   width: 100%;
   height: 400px;
   object-fit: cover;
+  border-radius: 8px;
 }
 .offer__slider-wrapper {
   width: 100%;
   margin-top: 15px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 1fr;
   border-radius: 10px;
   align-items: center;
   justify-content: center;
